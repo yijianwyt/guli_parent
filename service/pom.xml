@@ -12,6 +12,9 @@
     <groupId>com.atguigu</groupId>
     <artifactId>service</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>service_edu</module>
+    </modules>
 
     <dependencies>
 
