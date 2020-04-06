@@ -27,7 +27,8 @@ import java.util.List;
  */
 @Api(description = "讲师管理")
 @RestController
-@RequestMapping("/eduService/teacher")
+@RequestMapping("/eduservice/teacher")
+@CrossOrigin
 public class EduTeacherController {
 
     @Autowired
@@ -41,10 +42,14 @@ public class EduTeacherController {
     //2 逻辑删除讲师的方法
     @ApiOperation(value = "逻辑删除讲师")
     @DeleteMapping("{id}")
-    public Boolean removeTeacher(@ApiParam(name = "id", value = "讲师ID", required = true)
+    public R removeTeacher(@ApiParam(name = "id", value = "讲师ID", required = true)
                            @PathVariable String id) {
-        boolean flag = teacherService.removeById(id);
-            return flag;
+            boolean flag = teacherService.removeById(id);
+            if(flag==true){
+                return R.ok();
+            }else {
+                return R.error();
+            }
     }
     //3 分页查询讲师的方法
     //current 当前页
@@ -87,6 +92,7 @@ public class EduTeacherController {
         if(!StringUtils.isEmpty(end)) {
             wrapper.le("gmt_create",end);
         }
+        wrapper.orderByDesc("gmt_create");
         //调用方法实现条件查询分页
         teacherService.page(eduTeacherPage,wrapper);
 
