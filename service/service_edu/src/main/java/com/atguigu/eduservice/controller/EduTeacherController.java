@@ -34,7 +34,7 @@ public class EduTeacherController {
     @Autowired
     private EduTeacherService teacherService;
     @GetMapping("findAll")
-    private R list(){
+    public R list(){
         List<EduTeacher> list=teacherService.list(null);
         return R.ok().data("list",list);
     }
