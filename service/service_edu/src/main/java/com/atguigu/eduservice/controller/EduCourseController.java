@@ -35,10 +35,13 @@ public class EduCourseController {
 
     //课程列表 基本实现
     //TODO  完善条件查询带分页
-    @GetMapping
-    public R getCourseList(@PathVariable long current,@PathVariable long limit,@RequestBody EduCourseQuery eduCourseQuery) {
+    @PostMapping("getList/{current}/{limit}")
+    @ResponseBody
+    public R getCourseList(@PathVariable long current,@PathVariable long limit,
+                           @RequestBody(required = false) EduCourseQuery eduCourseQuery) {
         Page<EduCourse> page= new Page<>(current,limit);
         QueryWrapper<EduCourse> wrapper=new QueryWrapper<>();
+        System.out.println(eduCourseQuery.toString());
         String title=eduCourseQuery.getTitle();
         String status=eduCourseQuery.getStatus();
         if(!StringUtils.isEmpty(title)){
