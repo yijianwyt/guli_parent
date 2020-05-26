@@ -82,4 +82,23 @@ public class CodeGenerator {
         // 6、执行
         mpg.execute();
     }
+    @Test
+    public void testEquals(){
+        String a=new String("eeeeeeee");
+        String b="eeeeeeee";
+        System.out.println("a.equals(b)=="+a.equals(b));
+
+
+        System.out.println(a==b);
+
+
+        Person person=new Person();
+        Person person1=person;
+        System.out.println("person.equals(person1)=="+person.equals(person1));
+        System.out.println(person==person1);
+    }
+    class Person{
+        private String name;
+        private String age;
+    }
 }
